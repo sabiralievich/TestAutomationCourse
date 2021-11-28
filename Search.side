@@ -1,0 +1,63 @@
+{
+  "id": "95dc84c0-f941-4c8f-a349-9136fa218cf2",
+  "version": "2.0",
+  "name": "Search",
+  "url": "https://testpages.herokuapp.com",
+  "tests": [{
+    "id": "db35a6f6-d809-4c2a-af40-ea2ab0abf324",
+    "name": "Search",
+    "commands": [{
+      "id": "08f88c9a-6bad-489a-afc6-f389863da468",
+      "comment": "",
+      "command": "open",
+      "target": "/search.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c94e2ba5-57e7-4d62-9814-c6fc22538376",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='search.php']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa8d8914-653e-446f-b016-1a04e79bff33",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "geekbrains"
+    }, {
+      "id": "2b802d37-fbc1-4a8c-8541-73756026420f",
+      "comment": "",
+      "command": "click",
+      "target": "name=btnG",
+      "targets": [
+        ["name=btnG", "name"],
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='btnG']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "863f13bf-4a49-4605-b3e0-7f992667d9fc",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://testpages.herokuapp.com/"],
+  "plugins": []
+}
