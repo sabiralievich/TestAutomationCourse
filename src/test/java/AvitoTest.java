@@ -1,18 +1,19 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import ru.gb.lesson6.CustomLogger;
 import ru.gb.lesson6.MainPage;
 
-import java.time.Duration;
-import java.util.List;
-
+@Story("Шкафы")
 public class AvitoTest {
-    WebDriver driver;
+    EventFiringWebDriver eventFiringWebDriver;
+//    WebDriver driver;
     final String baseURL = "https://www.avito.ru";
     MainPage mainPage;
 
@@ -23,22 +24,28 @@ public class AvitoTest {
 
     @BeforeEach
     void setupDriver() {
-        driver = new ChromeDriver();
-        mainPage = new MainPage(driver);
-        driver.get(baseURL);
+        eventFiringWebDriver = new EventFiringWebDriver(new ChromeDriver());
+//        driver = new ChromeDriver();
+        eventFiringWebDriver.register(new CustomLogger());
+        mainPage = new MainPage(eventFiringWebDriver);
+        eventFiringWebDriver.get(baseURL);
     }
 
     @Test
-    void likeRandomPost() {
+    @Description("Add Post to Favorites")
+    @TmsLink(("11"))
+    @Feature("Favorites")
+    void likeRandomPost() throws InterruptedException {
         mainPage.fillSearchBar("шкаф")
                 .clickSubmitButton()
                 .clickSubmitButton();
+        Thread.sleep(2000);
         Assertions.assertEquals("active", mainPage.addToFavorites().getAttribute("data-state"));
     }
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        eventFiringWebDriver.quit();
     }
 
 }
